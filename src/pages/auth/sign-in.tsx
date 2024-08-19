@@ -1,3 +1,4 @@
+import { signIn } from '@/api/sign-in'
 import SignInForm, { SignInFormValues } from '@/components/forms/sign-in'
 import { Button } from '@/components/ui/button'
 import {
@@ -8,12 +9,16 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
+import { useMutation } from '@tanstack/react-query'
 import { ArrowRight02Icon } from 'hugeicons-react'
 import { SubmitHandler } from 'react-hook-form'
 
 function SignIn() {
-  const handleSubmit: SubmitHandler<SignInFormValues> = (values) => {
-    console.log('🚀 ~ handleSubmit ~ values:', values)
+  const { mutateAsync: authenticate } = useMutation({
+    mutationFn: signIn,
+  })
+  const handleSubmit: SubmitHandler<SignInFormValues> = async (values) => {
+    await authenticate(values)
   }
 
   return (
