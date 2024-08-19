@@ -4,7 +4,7 @@ import background from '@/assets/background.png'
 
 function AuthLayout() {
   return (
-    <div className="container mx-auto grid grid-cols-2 gap-2 py-10">
+    <div className="container mx-auto grid grid-cols-2 gap-2 py-10 font-poppins">
       <aside>
         <header>
           <img src={logo} alt="logo 'marketplace, painel de vendedor'" />
