@@ -12,13 +12,18 @@ import {
 import { useMutation } from '@tanstack/react-query'
 import { ArrowRight02Icon } from 'hugeicons-react'
 import { SubmitHandler } from 'react-hook-form'
+import { Link, useNavigate } from 'react-router-dom'
 
 function SignIn() {
+  const navigate = useNavigate()
+
   const { mutateAsync: authenticate } = useMutation({
     mutationFn: signIn,
   })
+
   const handleSubmit: SubmitHandler<SignInFormValues> = async (values) => {
     await authenticate(values)
+    navigate('/')
   }
 
   return (
@@ -37,8 +42,11 @@ function SignIn() {
         <Button
           variant="outline"
           className="w-full px-[1.25rem] h-[56px] rounded-xl justify-between bg-transparent border-orange-base text-orange-base"
+          asChild
         >
-          Cadastrar <ArrowRight02Icon />
+          <Link to="/sign-up">
+            Cadastrar <ArrowRight02Icon />
+          </Link>
         </Button>
       </CardFooter>
     </Card>
